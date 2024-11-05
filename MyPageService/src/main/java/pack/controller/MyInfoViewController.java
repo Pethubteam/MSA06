@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/myPage")
-public class MyInfoController {
+public class MyInfoViewController {
 
 	@Autowired
 	RestTemplate rt;

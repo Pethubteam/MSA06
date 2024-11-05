@@ -63,9 +63,9 @@ public class MyReviewViewController {
 	
 	// =====================================================================
 	
-	@GetMapping("/myHospital")
-	public String myHospital() {
-		return "myHospital";
+	@GetMapping("/myLikeHospital")
+	public String myLikeHospital() {
+		return "myLikeHospital";
 	}
 	
 }
