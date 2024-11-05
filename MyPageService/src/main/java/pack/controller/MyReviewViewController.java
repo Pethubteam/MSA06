@@ -30,11 +30,6 @@ public class MyReviewViewController {
 		return "myPage";
 	}
 	
-	@GetMapping("/myInfo")
-	public String myInfo() {
-		return "myInfo";
-	}
-	
 	// =====================================================================
 	
 	@GetMapping("/myReviews")
