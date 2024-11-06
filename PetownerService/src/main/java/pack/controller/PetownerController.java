@@ -3,6 +3,7 @@ package pack.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +23,8 @@ public class PetownerController {
 	PetownerService petownerService;
 	
 	@GetMapping("/{petownerId}")
-	public Petowner myInfo(@PathVariable Long petownerId) {
-		Petowner result = petownerService.findById(petownerId);
-		return result;
-	}
+	public ResponseEntity<Petowner> getPetOwnerById(@PathVariable Long petownerId) {
+        Petowner petowner = petownerService.findById(petownerId);
+        return ResponseEntity.ok(petowner);
+    }
 }

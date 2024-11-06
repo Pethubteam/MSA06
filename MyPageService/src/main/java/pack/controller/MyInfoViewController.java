@@ -1,5 +1,7 @@
 package pack.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.RequiredArgsConstructor;
+import pack.dto.PetownerDTO;
 
 @RequiredArgsConstructor
 @Controller
@@ -18,9 +21,16 @@ public class MyInfoViewController {
 	@Autowired
 	RestTemplate rt;
 	
-	@GetMapping("/myInfo/{userId}")
-	public String myInfo(@PathVariable Long userId, Model model) {
-		model.addAttribute("petowner", model);
+	@GetMapping("/myInfo/{petownerId}")
+	public String myInfo(@PathVariable Long petownerId, Model model) {
+		String petownerServiceUrl = "http://PetownerService/myInfo/" + petownerId;
+
+        // RestTemplate을 사용하여 PetownerService에서 PetOwner 데이터 가져오기
+        PetownerDTO petowner = rt.getForObject(petownerServiceUrl, PetownerDTO.class);
+
+        // 가져온 PetOwner 데이터를 "petowner"라는 이름으로 모델에 추가
+        model.addAttribute("petowner", petowner);
+
 		return "myInfo";
 	}
 }
