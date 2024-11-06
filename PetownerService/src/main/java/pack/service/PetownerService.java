@@ -1,7 +1,6 @@
 package pack.service;
 
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -12,9 +11,15 @@ import pack.repository.PetownerRepository;
 @Service
 public class PetownerService {
 	
-	private final PetownerRepository petownerRepository;
+//	private final PetownerRepository petownerRepository;
+	@Autowired
+	PetownerRepository petownerRepository;
 	
-	public List<Petowner> findAll() {
-		return petownerRepository.findAll();
+	public Petowner findById(Long petownerId) {
+//		return petownerRepository.findById(petownerId);
+		return petownerRepository.findById(petownerId)
+				.orElseThrow(() -> new IllegalArgumentException("not found: " + petownerId));
 	}
+	
+	
 }
