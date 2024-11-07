@@ -14,7 +14,7 @@ import pack.dto.PetownerDTO;
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/myPage")
-public class MyInfoViewController {
+public class MyInfoController {
 
 	@Autowired
 	RestTemplate rt;
