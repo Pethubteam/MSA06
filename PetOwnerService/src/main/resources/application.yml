@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: PetOwnerService  # 서비스 이름을 'PetOwnerService'로 설정합니다.
+  cloud:
+    config:
+      uri: http://localhost:8888  # Config Server의 URI를 설정합니다.
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL 드라이버 클래스를 지정합니다.
+    url: jdbc:mysql://localhost:3306/petownerdb?characterEncoding=utf8&serverTimezone=UTC  # PetOwnerService 전용 데이터베이스 URL을 설정합니다.
+    username: root  # 데이터베이스 사용자명을 설정합니다.
+    password: 1234  # 데이터베이스 비밀번호를 설정합니다.
+  jpa:
+    database: mysql  # 데이터베이스 종류를 MySQL로 설정합니다.
+    hibernate:
+      ddl-auto: update  # 스키마 자동 업데이트 설정
+    show-sql: true  # SQL 쿼리를 콘솔에 출력합니다.
+server:
+  port: 8084  # 서버 포트를 8084로 설정합니다.
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka  # Eureka 서버 주소를 설정합니다.
+  instance:
+    prefer-ip-address: true  # IP 주소를 우선적으로 사용합니다.
+resilience4j:
+  # 지연 시간 설정
+  timelimiter:
+    configs:
+      default:
+        cancel-running-future: true  # 실행 중인 작업을 취소할지 여부를 설정합니다.
+        timeout-duration: 3s  # 응답이 3초 이내에 오지 않으면 타임아웃을 발생시킵니다.
+  # 실패율 설정
+  circuitbreaker:
+    configs:
+      default:
+        failureRateThreshold: 51  # 실패율이 50% 이상이면 Open 상태로 전환합니다.
+        slidingWindowSize: 5  # 최근 5개의 요청에 대한 실패율을 계산합니다.
+        slidingWindowType: COUNT_BASED  # 요청 수 기준으로 실패율을 계산합니다.
+        minimumNumberOfCalls: 3  # 실패율을 계산하기 위한 최소 호출 횟수를 3으로 설정합니다.
+        waitDurationInOpenState: 10s  # Open 상태일 때 10초 기다린 후 Half-open 상태로 전환합니다.
+        permittedNumberOfCallsInHalfOpenState: 3  # Half-open 상태에서 3개의 요청 결과에 따라 상태를 결정합니다.
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  # 모든 엔드포인트를 노출합니다.
+  endpoint:
+    health:
+      show-details: always  # 상세 내역을 항상 표시합니다.
