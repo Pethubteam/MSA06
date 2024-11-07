@@ -1,38 +1,42 @@
 spring:
   application:
-    name: GatewayServer  # 게이트웨이 서버의 이름을 'GatewayServer'로 설정합니다.
+    name: GatewayServer
   cloud:
     gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':  # 모든 경로에 대해 CORS 설정 적용
+            allowedOrigins: "http://localhost:3000"  # React 애플리케이션의 URL로 설정
+            allowedMethods: "*"
+            allowedHeaders: "*"
+            allowCredentials: true
       routes:
-        # 라우트 설정: 응답을 보낼 목적지 URI와 필터 항목을 식별하기 위한 ID를 설정합니다.
-        # 예: http://localhost:8081 (Service01의 포트번호)
         - id: first-service
-          uri: lb://SERVICE01  # Eureka에서 'SERVICE01'을 찾아 해당 서비스의 인스턴스로 로드 밸런싱하여 라우팅합니다.
+          uri: lb://SERVICE01
           predicates:
-            - Path=/tiger/**  # '/tiger/**' 경로로 들어오는 요청을 처리합니다.
+            - Path=/tiger/**
         - id: second-service
-          uri: lb://SERVICE02  # Eureka에서 'SERVICE02'를 찾아 해당 서비스의 인스턴스로 로드 밸런싱하여 라우팅합니다.
+          uri: lb://SERVICE02
           predicates:
-            - Path=/lion/**  # '/lion/**' 경로로 들어오는 요청을 처리합니다.
+            - Path=/lion/**
         - id: service01-actuator
-          uri: lb://SERVICE01  # Eureka에서 'SERVICE01'을 찾아 해당 서비스의 인스턴스로 로드 밸런싱하여 라우팅합니다.
+          uri: lb://SERVICE01
           predicates:
-            - Path=/actuator/**  # '/actuator/**' 경로로 들어오는 요청을 처리합니다.
+            - Path=/actuator/**
         - id: service01-tiger2
-          uri: lb://SERVICE01  # Eureka에서 'SERVICE01'을 찾아 해당 서비스의 인스턴스로 로드 밸런싱하여 라우팅합니다.
+          uri: lb://SERVICE01
           predicates:
-            - Path=/tiger2/**  # '/tiger2/**' 경로로 들어오는 요청을 처리합니다.
-        # 추가된 라우트 설정
+            - Path=/tiger2/**
         - id: hospital-service
-          uri: lb://HospitalService  # Eureka에서 'HospitalService'를 찾아 해당 서비스의 인스턴스로 로드 밸런싱하여 라우팅합니다.
+          uri: lb://HospitalService
           predicates:
-            - Path=/hospitals/**  # '/hospitals/**' 경로로 들어오는 요청을 처리합니다.
+            - Path=/hospitals/**
 eureka:
   instance:
-    non-secure-port: ${server.port}  # 인스턴스의 비보안 포트를 서버 포트로 설정합니다.
-    prefer-ip-address: true  # IP 주소를 선호하도록 설정합니다.
+    non-secure-port: ${server.port}
+    prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka  # Eureka 서버의 URL을 설정합니다.
+      defaultZone: http://localhost:8761/eureka
 server:
-  port: 8765  # 게이트웨이 서버의 포트를 8765로 설정합니다.
+  port: 8765
