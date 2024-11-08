@@ -47,15 +47,16 @@ spring:
           predicates:
             - Path=/tiger2/**
         # -------------------------------------------------------------------------
+        - id: petowner
+          uri: lb://PETOWNERSERVICE
+          predicates:
+            - Path=/myPage/myInfo/**
+        # -------------------------------------------------------------------------
         - id: myPage
           uri: lb://MYPAGESERVICE
           predicates:
             - Path=/myPage/**
-        # -------------------------------------------------------------------------
-        - id: petowner
-          uri: lb://PETOWNERSERVICE
-          predicates:
-            - Path=/myInfo/**
+
 
 eureka:
   instance:

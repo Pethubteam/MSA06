@@ -1,10 +1,12 @@
 package pack.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 import pack.domain.Petowner;
 
+@Setter
 @Getter
-public class PetownerProfile {
+public class PetownerInfo {
 	private String name;
     private String phone;
     private String email;
