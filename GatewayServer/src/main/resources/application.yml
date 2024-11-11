@@ -24,7 +24,7 @@ spring:
              # Eureka에서 'SERVICE01'을 찾고, 해당 서비스의 인스턴스로 로드 밸런싱하여 라우팅
              # lb : load balancing
           predicates:
-          # predicates(조건자) : 요청을 처리하기 전 HTTP 요청이 정의된 조건에 부합하는지 검사
+          # predicates(조건자) : 요청을 처리하기전 HTTP 요청이 정의된 조건에 부합하는지 검사
           #  |-> http://localhost:8765/t1로 접근 들어온다면 (8765 : GatewayServer 포트번호)
             - Path=/tiger/**
           # filters도 있음
