@@ -6,7 +6,7 @@ import pack.domain.Petowner;
 
 @Setter
 @Getter
-public class PetownerInfo {
+public class PetownerDTO {
 	private String name;
     private String phone;
     private String email;

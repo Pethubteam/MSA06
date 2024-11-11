@@ -16,6 +16,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pack.dto.PetownerDTO;
 
 @EntityListeners(AuditingEntityListener.class)
 @Entity
@@ -34,7 +35,7 @@ public class Petowner {
 	@Column(name = "phone", nullable = false)
     private String phone;
 	
-	@Column(name = "email", nullable = false)
+	@Column(name = "email", nullable = false, unique = true)
     private String email;
 	
 	@Column(name = "address", nullable = false)
@@ -50,4 +51,14 @@ public class Petowner {
     @LastModifiedDate
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
+    
+    public static Petowner toPetownerEntity(PetownerDTO petownerDTO) {
+    	Petowner petowner = new Petowner();
+    	petowner.setEmail(petownerDTO.getEmail());
+    	petowner.setPassword(petownerDTO.getPassword());
+    	petowner.setName(petownerDTO.getName());
+    	return petowner;
+    }
+    
+//    public static Petowner toUpdatePetownerEntity 
 }
