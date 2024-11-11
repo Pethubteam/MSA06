@@ -6,12 +6,9 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':  # 모든 경로에 대해 CORS 설정 적용
-            allowedOrigins:
-              - "http://localhost:3000"  # React 애플리케이션의 URL로 설정
-            allowedMethods:
-              - "*"
-            allowedHeaders:
-              - "*"
+            allowedOrigins: "http://localhost:3000"  # React 애플리케이션의 URL로 설정
+            allowedMethods: "*"
+            allowedHeaders: "*"
             allowCredentials: true
       # Gateway가 동적으로 Eureka에 새로 등록된 서비스를 동적으로 감지, 동적으로 라우팅 경로 정의하도록 하는 코드
       # discovery:
@@ -56,7 +53,11 @@ spring:
           uri: lb://MYPAGESERVICE
           predicates:
             - Path=/myPage/**
-
+        # -------------------------------------------------------------------------
+        - id: hospital-service
+          uri: lb://HOSPITALSERVICE
+          predicates:
+            - Path=/hospitals/**
 
 eureka:
   instance:

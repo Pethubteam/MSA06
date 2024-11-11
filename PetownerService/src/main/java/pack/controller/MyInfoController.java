@@ -25,10 +25,10 @@ public class MyInfoController {
 //		return "myInfo";
 //	}
 	
-//	@GetMapping("/{petownerId}")
-//	public String myInfo(@PathVariable Long petownerId, Model model) {
-//		Petowner petowner = petownerService.findById(petownerId);
-//		model.addAttribute("petowner", new PetownerViewResponse(petowner));
-//		return "myInfo";
-//	}
+	@GetMapping("/{petownerId}")
+	public String myInfo(@PathVariable Long petownerId, Model model) {
+		Petowner petowner = petownerService.findById(petownerId);
+		model.addAttribute("petowner", new PetownerViewResponse(petowner));
+		return "myInfo";
+	}
 }

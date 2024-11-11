@@ -15,6 +15,11 @@ public class PetownerService {
 	
 	@Autowired
 	private PetownerRepository petownerRepository;
+
+	public Petowner findById(Long petownerId) {
+		return petownerRepository.findById(petownerId)
+                .orElseThrow(() -> new RuntimeException("Petowner not found with id: " + petownerId));
+	}
 	
 //	public void signup(PetownerDTO petownerDTO) {
 //		Petowner petowner = Petowner.
