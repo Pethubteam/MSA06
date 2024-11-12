@@ -5,4 +5,4 @@
 # Ignore all target directories
 **/target/
 
-*.properties
+**/target/**/*.properties
