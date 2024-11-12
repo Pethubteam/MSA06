@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpSession;
 import pack.domain.Petowner;
-import pack.dto.LoginRequest;
 import pack.dto.PetownerDTO;
-import pack.dto.SignupRequest;
 import pack.service.PetownerService;
 
 @RestController

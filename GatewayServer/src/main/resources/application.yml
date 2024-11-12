@@ -47,6 +47,22 @@ spring:
           predicates:
             - Path=/myPage/myInfo/**
         # -------------------------------------------------------------------------
+        # !! 회원가입 !!
+        - id: signup
+          uri: lb://PETOWNERSERVICE
+          predicates:
+            - Path=/signup/**
+        # !! 로그인 !!
+        - id: login
+          uri: lb://PETOWNERSERVICE
+          predicates:
+            - Path=/login/**
+        # !! 정보 수정 !!
+        - id: update
+          uri: lb://PETOWNERSERVICE
+          predicates:
+            - Path=/update/**
+        # -------------------------------------------------------------------------
         - id: myPage
           uri: lb://MYPAGESERVICE
           predicates:

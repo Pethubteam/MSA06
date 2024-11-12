@@ -12,7 +12,7 @@ spring:
     database: mysql
 
 server:
-  port: 8083
+  port: 8084
 
 resilience4j:
   # 지연 시간

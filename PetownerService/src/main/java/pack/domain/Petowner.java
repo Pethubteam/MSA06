@@ -25,40 +25,45 @@ import pack.dto.PetownerDTO;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Petowner {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)    // Auto Increment
 	@Column(name = "petowner_id", updatable = false)
 	private Long petownerId;
 	
 	@Column(name = "name", nullable = false)
     private String name;
 	
-	@Column(name = "phone", nullable = false)
+	@Column(name = "phone", nullable = false, unique = true)
     private String phone;
 	
 	@Column(name = "email", nullable = false, unique = true)
     private String email;
 	
-	@Column(name = "address", nullable = false)
-    private String address;
-	
 	@Column(name = "password", nullable = false)
     private String password;
 	
 	@CreatedDate
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name = "updated_at")
+    @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
     
     public static Petowner toPetownerEntity(PetownerDTO petownerDTO) {
     	Petowner petowner = new Petowner();
+    	petowner.setName(petownerDTO.getName());
+    	petowner.setPhone(petownerDTO.getPhone());
     	petowner.setEmail(petownerDTO.getEmail());
     	petowner.setPassword(petownerDTO.getPassword());
-    	petowner.setName(petownerDTO.getName());
     	return petowner;
     }
     
-//    public static Petowner toUpdatePetownerEntity 
+    public static Petowner toUpdatePetownerEntity(PetownerDTO petownerDTO) {
+    	Petowner petowner = new Petowner();
+    	petowner.setName(petownerDTO.getName());
+    	petowner.setPhone(petownerDTO.getPhone());
+    	petowner.setEmail(petownerDTO.getEmail());
+    	petowner.setPassword(petownerDTO.getPassword());
+    	return petowner;
+    }
 }

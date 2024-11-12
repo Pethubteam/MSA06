@@ -10,5 +10,5 @@ import pack.domain.Petowner;
 
 @Repository
 public interface PetownerRepository extends JpaRepository<Petowner, Long> {
-//	Optional<Petowner> findByPetownerId(Long petownerId);
+	Optional<Petowner> findByEmail(String email);
 }

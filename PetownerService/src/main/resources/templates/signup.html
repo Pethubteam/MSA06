@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+	<script
+		src="https://code.jquery.com/jquery-3.6.3.min.js"
+		integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+		crossorigin="anonymous">
+	</script>
+</head>
+<body>
+	<h3>회원가입</h3>
+	
+	<form action="/signup" method="post">
+		이메일: <input type="text" name="email" id="email" onblur="emailCheck()"><br/>
+		<p id="check-result"></p>
+		비밀번호: <input type="password" name="password"><br/>
+		이름: <input type="text" name="name"><br/>
+		전화번호: <input type="text" name="phone"><br/>
+		<input type="submit" value="회원가입">
+	</form> 
+</body>
+
+<script th:inline="javascript">
+    const emailCheck = () => {
+        const petownerEmail = document.getElementById("email").value;
+        const checkResult = document.getElementById("check-result");
+        console.log("입력값: ", petownerEmail);
+        $.ajax({
+            // 요청방식: post, url: "email-check", 데이터: 이메일
+            type: "post",
+            url: "/email-check",
+            data: {
+                "email": petownerEmail
+            },
+            success: function(res) {
+                console.log("요청성공", res);
+                if (res == "ok") {
+                    console.log("사용가능한 이메일");
+                    checkResult.style.color = "green";
+                    checkResult.innerHTML = "사용가능한 이메일";
+                } else {
+                    console.log("이미 사용중인 이메일");
+                    checkResult.style.color = "red";
+                    checkResult.innerHTML = "이미 사용중인 이메일";
+                }
+            },
+            error: function(err) {
+                console.log("에러발생", err);
+            }
+        });
+    }
+</script>
+</html>
