@@ -1,5 +1,8 @@
+/.metadata/
 # Ignore .factorypath files
 **/.factorypath
 
 # Ignore all target directories
 **/target/
+
+*.properties
