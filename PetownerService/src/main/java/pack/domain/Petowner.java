@@ -25,7 +25,7 @@ import pack.dto.PetownerDTO;
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Petowner {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)    // Auto Increment
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "petowner_id", updatable = false)
 	private Long petownerId;
 	
@@ -58,7 +58,7 @@ public class Petowner {
     	return petowner;
     }
     
-    public static Petowner toUpdatePetownerEntity(PetownerDTO petownerDTO) {
+    public static Petowner toUpdatePetowner(PetownerDTO petownerDTO) {
     	Petowner petowner = new Petowner();
     	petowner.setName(petownerDTO.getName());
     	petowner.setPhone(petownerDTO.getPhone());

@@ -1,40 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-
-	<script
-		src="https://code.jquery.com/jquery-3.6.3.min.js"
-		integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-		crossorigin="anonymous">
-	</script>
+    <meta charset="UTF-8">
+    <title>save</title>
+    <!-- jquery cdn -->
+    <script
+            src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            crossorigin="anonymous"></script>
 </head>
 <body>
-	<h3>회원가입</h3>
-	
-	<form action="/signup" method="post">
-		이메일: <input type="text" name="email" id="email" onblur="emailCheck()"><br/>
-		<p id="check-result"></p>
-		비밀번호: <input type="password" name="password"><br/>
-		이름: <input type="text" name="name"><br/>
-		전화번호: <input type="text" name="phone"><br/>
-		<input type="submit" value="회원가입">
-	</form> 
+<!-- action속성: form에 작성한 데이터를 어디로 보낼지 지정 -->
+<form action="/signup" method="post">
+    <!-- name속성: 서버로 전송할 때 변수이름의 역할 -->
+    이메일: <input type="text" name="email" id="email" onblur="emailCheck()"> <br>
+    <p id="check-result"></p>
+    비밀번호: <input type="password" name="password"> <br>
+    이름: <input type="text" name="name"> <br>
+    전화번호: <input type="text" name="phone"> <br>
+    <input type="submit" value="회원가입">
+</form>
 </body>
 
 <script th:inline="javascript">
     const emailCheck = () => {
-        const petownerEmail = document.getElementById("email").value;
+        const email = document.getElementById("email").value;
         const checkResult = document.getElementById("check-result");
-        console.log("입력값: ", petownerEmail);
+        console.log("입력값: ", email);
         $.ajax({
             // 요청방식: post, url: "email-check", 데이터: 이메일
             type: "post",
             url: "/email-check",
             data: {
-                "email": petownerEmail
+                "email": email
             },
             success: function(res) {
                 console.log("요청성공", res);
@@ -55,3 +53,11 @@
     }
 </script>
 </html>
+
+
+
+
+
+
+
+

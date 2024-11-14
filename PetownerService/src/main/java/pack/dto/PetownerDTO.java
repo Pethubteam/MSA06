@@ -15,7 +15,7 @@ import pack.domain.Petowner;
 public class PetownerDTO {
 	private Long petownerId;
 	private String name;
-    private String phone;
+	private String phone;
     private String email;
     private String password;
     

@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>update</title>
 </head>
 <body>
-	<h3>정보 수정</h3>
-	
-	<form action="/update" method="post">
-		<input type="hidden" th:value="${updatePetowner.id}" name="id"><br>
-		이메일: <input type="text" th:value="${updatePetowner.petownerEmail}" name="petownerEmail" readonly> <br>
-		비밀번호: <input type="text" th:value="${updatePetowner.petownerPassword}" name="petownerPassword"> <br>
-		이름: <input type="text" th:value="${updatePetowner.petownerName}" name="petownerName"> <br>
-		<input type="submit" value="정보수정">
-	</form>
+<form action="/update" method="post">
+  <input type="hidden" th:value="${updatePetowner.petownerId}" name="petownerId"><br>
+  이메일: <input type="text" th:value="${updatePetowner.email}" name="email" readonly> <br>
+  비밀번호: <input type="text" th:value="${updatePetowner.password}" name="password"> <br>
+  이름: <input type="text" th:value="${updatePetowner.name}" name="name"> <br>
+  전화번호: <input type="text" th:value="${updatePetowner.phone}" name="phone"> <br>
+  <input type="submit" value="정보수정">
+</form>
 </body>
 </html>

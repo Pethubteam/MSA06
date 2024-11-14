@@ -1,6 +1,5 @@
 package pack.repository;
 
-import java.beans.JavaBean;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
