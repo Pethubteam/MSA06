@@ -1,5 +1,6 @@
 package pack.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -11,12 +12,22 @@ public class Hospital {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "hospital_name")
     private String hospitalName;
+
     private String address;
+
+    @Column(name = "phone_number")
     private String phoneNumber;
+
+    @Column(name = "operating_hours")
     private String operatingHours;
+
     private double lat;
     private double lng;
+
+    @Column(name = "image_path")
     private String imagePath;
 
     // Getter and Setter for id
