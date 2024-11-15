@@ -1,8 +1,0 @@
-INDEX VERSION 1.4+C:\Users\LSM\eclipse-msa06(pethub2 - 1115)\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-1985408353.index
-1572718933.index
-2622968717.index
-3168533774.index
-491285484.index
-2159773851.index
-2683942853.index
