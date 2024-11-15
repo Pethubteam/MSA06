@@ -1,0 +1,5 @@
+package pack.domain;
+
+public class Hospital {
+
+}
